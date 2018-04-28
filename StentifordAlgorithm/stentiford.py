@@ -233,9 +233,10 @@ if __name__ == "__main__":
 		count = count+1
 		image = cv2.imread(file)
 		image = color.rgb2gray(image)
-		fgps = foregroundPixels(invert(image))
+		image = invert(image)
+		fgps = foregroundPixels(image)
 		print("fgps: ", fgps)
-		skeleton = stentiford(invert(image))
+		skeleton = stentiford(image)
 		fgpst = foregroundPixels(skeleton)
 		print("fgpst: ", fgpst)
 		reduction_rate = reduction_rate + (((fgps-fgpst)/fgps)*100)

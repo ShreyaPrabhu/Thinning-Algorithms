@@ -95,32 +95,6 @@ def sensitivitycheck(image, fg):
 	sensitivity = 1 - sensitivity
 	return sensitivity
 
-def neighbourst(thin_image, i, j):
-	p2 = thin_image[i-1][j-1]
-	p3 = thin_image[i-1][j]
-	p4 = thin_image[i-1][j+1]
-	p5 = thin_image[i][j+1]
-	p6 = thin_image[i+1][j+1]
-	p7 = thin_image[i+1][j]
-	p8 = thin_image[i+1][j-1]
-	p9 = thin_image[i][j-1]
-	return p2,p3,p4,p5,p6,p7,p8,p9
-
-def thinnesscheck(image):
-	row,col = image.shape
-	thinny = 0
-	for i in range(2, row-1):
-		for j in range(2, col-1):
-			if(image[i][j]==1):
-				p1 = image[i][j]
-				p2,p3,p4,p5,p6,p7,p8,p9 = neighbourst(image, i, j)
-				compute = (p1*p9*p2) + (p1*p9*p8) + (p1*p8*p7) + (p1*p7*p6) + (p1*p6*p5) + (p1*p5*p4) + (p1*p4*p3) + (p1*p3*p2)
-				thinny = thinny + compute
-	denominator = (max(row,col)-1)*(max(row,col)-1)
-	denominator = denominator/4
-	thinness = thinny/denominator
-	return thinness
-
 def hilditch(image):
 	Image_Thinned = image.copy()
 	changing1 = 1
@@ -156,10 +130,11 @@ if __name__ == "__main__":
 		count = count+1
 		image = cv2.imread(file)
 		image = color.rgb2gray(image)
+		image = invert(image)
 		print(image.shape)
-		fgps = foregroundPixels(invert(image))
+		fgps = foregroundPixels(image)
 		print("fgps: ", fgps)
-		skeleton = hilditch(invert(image))
+		skeleton = hilditch(image)
 		fgpst = foregroundPixels(skeleton)
 		print("fgpst: ", fgpst)
 		reduction_rate = reduction_rate + (((fgps-fgpst)/fgps)*100)

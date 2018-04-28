@@ -136,10 +136,11 @@ if __name__ == "__main__":
 		count = count+1
 		image = cv2.imread(file)
 		image = color.rgb2gray(image)
+		image = invert(image)
 		print(image.shape)
-		fgps = foregroundPixels(invert(image))
+		fgps = foregroundPixels(image)
 		print("fgps: ", fgps)
-		skeleton = zsAlgoIterationOne(invert(image))
+		skeleton = zsAlgoIterationOne(image)
 		fgpst = foregroundPixels(skeleton)
 		print("fgpst: ", fgpst)
 		reduction_rate = reduction_rate + (((fgps-fgpst)/fgps)*100)
