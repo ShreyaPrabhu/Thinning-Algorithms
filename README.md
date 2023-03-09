@@ -22,6 +22,7 @@ Paper titled "Comparison of Various Thinning Algorithms on Handwritten Kannada C
 accepted for publishing at "National Conference on Information, Communication, Controls
 and Computing (NCIC3 2018)" held at Sir M Visvesvaraya Institute of Technology on 23rd May 2018.
 
-Link - http://www.irdindia.in/journal_ijaeee/pdf/vol7_iss1_2_3/18.pdf
+Link - http://www.irdindia.in/journal_ijaeee/volume_7_issue_1_2_3.html
+Listing number 18, Pg 72-75
 
 
